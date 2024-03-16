@@ -19,7 +19,7 @@ export default function ButtonWithTooltip({children, tooltipContent, ...rest}) {
                 setTarget(null);
             }}>{children}</button>
             {target !== null && (
-                createPortal(<p style={{position: 'absolute', pointerEvents: 'none', left: target.left, top: target.top, color: 'white'}}>ashfjksdhfjksd</p>, document.body)
+                createPortal(<p style={{position: 'absolute', pointerEvents: 'none', left: target.left, top: target.top, color: 'white'}}>{tooltipContent}</p>, document.body)
             )}
         </>
     )

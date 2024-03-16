@@ -32,22 +32,23 @@ function App() {
   if (startTime != null && nowTime != null){
     secondsPassed = (nowTime-startTime)/1000;
   }
-
+  
   return (
     <div className="App">
       <header className="App-header">
-        <h3>Прошло времени: {secondsPassed}</h3>
+        <h3>Прошло времени: {isShowModal ? 0 : secondsPassed}</h3>
         <div>
-          <button onClick={() => {
-            handleStartClick();
-          }}>Start</button>
-          <ButtonWithTooltip onClick={handleStartClick}>Start</ButtonWithTooltip>
+          <ButtonWithTooltip onClick={handleStartClick} tooltipContent={<p>Это кнопка старта</p>}>Start</ButtonWithTooltip>
           <button onClick={() => {
             handleStopClick();
             setShowModal(true);
           }}>Stop</button>
           {isShowModal && createPortal(
-            <Modal time={secondsPassed} onClose={() => setShowModal(false)}/>,
+            <Modal time={secondsPassed} onClose={() => {
+              setShowModal(false);
+              setStartTime(Date.now())
+              setNowTime(Date.now())
+            }}/>,
             document.querySelector('.App-header')
           )}
         </div>
